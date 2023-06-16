@@ -7,8 +7,8 @@ const LoginPage = () => {
             <Typography
                 fontWeight='bold'
                 fontSize= '32px'
-                color='blue'
-                backgroundColor='purple'
+                color='red'
+                backgroundColor='black'
             >
                 RGeeks
             </Typography>

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-    Box,
     Typography,
     useMediaQuery
 } from '@mui/material'
@@ -12,6 +11,9 @@ const NavBar = () => {
     const [mobileMenu, setMobileMenu] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const user = useSelector((state) => state.user);
+    const noMobileScreen = useMediaQuery("(min-width: 1000px)");
+
 
     return( <div>
         <Typography
