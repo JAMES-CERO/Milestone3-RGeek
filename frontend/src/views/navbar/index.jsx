@@ -9,7 +9,8 @@ import { setMode, setLogout } from "../../state";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-  
+    const [mobileMenu, setMobileMenu] = useState(false);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     return( <div>
@@ -22,7 +23,6 @@ const NavBar = () => {
           >
              RGeeks
         </Typography>
-     
         
         
     </div>)
