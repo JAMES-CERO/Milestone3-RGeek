@@ -9,6 +9,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 import { fileURLToPath } from 'url';
 import { register } from './controllers/auth.js'
+import mongoose from "mongoose";
 dotenv.config();
 
 // Express Settings
@@ -41,10 +42,15 @@ const upload = multer({storage});
 // Routes & files - middleware
 app.post("/auth/register", upload.single('picture'), register)
 
+//mongoose - mongodb
 
+const PORT = process.env.PORT || 6001
 
-// Listen for Connections
-app.listen(process.env.PORT, () => {
-    console.log(`Listening on ${process.env.PORT}`);
-  });
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+}).catch((err) => console.log(`${err} did not connect`));
+
   
