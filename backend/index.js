@@ -8,6 +8,7 @@ import multer from "multer";
 import morgan from "morgan";
 import helmet from "helmet";
 import { fileURLToPath } from 'url';
+import authRoutes from "./routes/auth.js"
 import { register } from './controllers/auth.js'
 import mongoose from "mongoose";
 dotenv.config();
@@ -40,7 +41,9 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 // Routes & files - middleware
-app.post("/auth/register", upload.single('picture'), register)
+app.post("/auth/register", upload.single('picture'), register);
+
+app.use("/auth", authRoutes);
 
 //mongoose - mongodb
 
