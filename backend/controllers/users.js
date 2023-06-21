@@ -43,11 +43,11 @@ export const addOrRemoveFriend = async (req, res) => {
             user.friends = user.friends.filter((id) => id !== friendId);
             friend.friends = friend.friends.filter((id) => id !== id);
         } else {
-            user.friends.push(friendId)
+            user.friends.push(friendId);
             friend.friends.push(id);
         }
         await user.save();
-        await friend.save()
+        await friend.save();
 
         const friends = await Promise.all(
             user.friends.map((id) => User.findById(id))
@@ -64,4 +64,4 @@ export const addOrRemoveFriend = async (req, res) => {
     } catch (error) {
         res.status(404).json({message: err.message});
     }
-}
+};

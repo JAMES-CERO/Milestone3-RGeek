@@ -45,6 +45,7 @@ const upload = multer({storage});
 app.post("/auth/register", upload.single('picture'), register);
 
 app.use("/auth", authRoutes);
+app.use('/user', userRoutes);
 
 //mongoose - mongodb
 
