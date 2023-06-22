@@ -37,11 +37,11 @@ Post
 
 ## Screenshots
 
-![App Screenshot](./signup%20Page%20Mobile%20Prototype/1.png)
+![App Screenshot](./Prototype/1.png)
 
 ....
 
-![App Screenshot](./Login%20Page%20Mobile%20Prototype/2.png)
+![App Screenshot](./Prototype/2.png)
 
 ## Features
 
