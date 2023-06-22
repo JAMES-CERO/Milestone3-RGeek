@@ -94,7 +94,7 @@ export const posts = [
   },
   {
     _id: new mongoose.Types.ObjectId(),
-    _userId: userIds[2],
+    userId: userIds[2],
     firstName: "Some",
     lastName: "Guy",
     location: "Canada, CA",
