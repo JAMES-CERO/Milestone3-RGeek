@@ -10,6 +10,7 @@ import helmet from "helmet";
 import { fileURLToPath } from 'url';
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/post.js"
 import { register } from './controllers/auth.js';
 import mongoose from "mongoose";
 dotenv.config();
@@ -46,7 +47,7 @@ app.post("/auth/register", upload.single('picture'), register);
 
 app.use("/auth", authRoutes);
 app.use('/users', userRoutes);
-app.use('/posts' postRoutes);
+app.use('/posts', postRoutes);
 
 //mongoose - mongodb
 
