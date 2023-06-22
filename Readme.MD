@@ -14,16 +14,35 @@ User
 |   `email`   | `string` | 
 |   `password`   | `string` | 
 |   `friends`   | `Array<Objet>` | 
-|   `pictureUrl`   | `string` | 
+|   `picturePath`   | `string` | 
 |   `location`   | `string` | 
 |   `occupation`   | `string` | 
+
+Post
+
+| Parameter | Type     | 
+| :-------- | :------- | 
+|   `_id`   | `string` | 
+ |   `userId`   | `string` |  
+|   `firstname`   | `string` | 
+|   `lastname`   | `string` | 
+|   `location`   | `string` | 
+|   `description`   | `string` | 
+|   `userPicturePath`   | `string` | 
+|   `picturePath`   | `string` | 
+|   `likes`   | `Objet<String>` | 
+|   `comments`   | `Array<string>` | 
+
 
 
 ## Screenshots
 
-![App Screenshot](./frontend/Login%20Page%20Mobile%20Prototype/1.png)
+![App Screenshot](./signup%20Page%20Mobile%20Prototype/1.png)
+
 ....
-![App Screenshot](./frontend/Login%20Page%20Mobile%20Prototype/2.png)
+
+![App Screenshot](./Login%20Page%20Mobile%20Prototype/2.png)
+
 ## Features
 
 - Light/dark mode toggle
