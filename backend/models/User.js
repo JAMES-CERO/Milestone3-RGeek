@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
         require: true,
         max: 10
     },
-    pictureURL:{
+    picturePath:{
         type: String,
         default: 'https://cdn.dribbble.com/users/1787323/screenshots/6604852/lazycat_code-01_4x.png?compress=1&resize=768x576&vertical=center'
     },
