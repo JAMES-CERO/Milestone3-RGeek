@@ -51,6 +51,31 @@ const NavBar = () => {
                 >
                     RGeeks
                 </Typography>
+                { mobileMenu ? (
+                    <FlexMUI>
+                        <IconButton onClick={() => dispatch(setMode())}>
+                            {backgroundColor === 'black' ? (
+                                <DarkMode sx={{fontSize: '25px'}} />
+                            ) : (
+                                <LightMode sx={{ color: 'white', fontSize: '25px'}} />
+                            )}
+                        </IconButton>
+                        <Message />
+                        <Notifications />
+                        <Help />
+                        <FormControl>
+                            <Select>
+                                <MenuItem></MenuItem>
+                            </Select>
+                        </FormControl>
+                    </FlexMUI>
+                ) : (
+                    <IconButton>
+
+                    </IconButton>
+                )
+
+                }
             </FlexMUI>
         </FlexMUI>
     )
