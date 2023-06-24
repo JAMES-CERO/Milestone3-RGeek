@@ -7,6 +7,7 @@ import {
     MenuItem,
     FormControl,
     Typography,
+    useTheme,
     useMediaQuery
 } from '@mui/material'
 import {
@@ -25,11 +26,13 @@ import { useNavigate } from "react-router-dom";
 import FlexMUI from "../../components/FlexMUI";
 
 const NavBar = () => {
+
     const [mobileMenu, setMobileMenu] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user);
     const noMobileScreen = useMediaQuery("(min-width: 1000px)");
+    const theme = useTheme();
 
 
 
@@ -51,10 +54,10 @@ const NavBar = () => {
                 >
                     RGeeks
                 </Typography>
-                { mobileMenu ? (
+                { !mobileMenu ? (
                     <FlexMUI>
                         <IconButton onClick={() => dispatch(setMode())}>
-                            {backgroundColor === 'black' ? (
+                            {theme.mode  === 'black' ? (
                                 <DarkMode sx={{fontSize: '25px'}} />
                             ) : (
                                 <LightMode sx={{ color: 'white', fontSize: '25px'}} />
@@ -65,17 +68,54 @@ const NavBar = () => {
                         <Help />
                         <FormControl>
                             <Select>
-                                <MenuItem></MenuItem>
+                                <MenuItem >
+                                    <Typography></Typography>
+                                </MenuItem>
+                                <MenuItem onClick={() => dispatch(setLogout())} > Log Out!</MenuItem>
                             </Select>
                         </FormControl>
                     </FlexMUI>
                 ) : (
-                    <IconButton>
-
+                    <IconButton onClick={() => setMobileMenu(!mobileMenu)}>
+                        <Menu/>
                     </IconButton>
                 )
 
                 }
+
+                {/* {mobile sc} */}
+                {!noMobileScreen && mobileMenu && (
+                    <Box position='fixed' backgroundColor= 'black'>
+                        <Box display='flex' justifyContent='frex-end'>
+                            <IconButton onClick={() => setMobileMenu(!mobileMenu)}>
+                                <Close />
+                            </IconButton>
+                        </Box>
+
+                        {/* {Menuitem} */}
+                        <FlexMUI display='flex' flexDirection='column' alignItems='center' gap='3rem'>
+                        <IconButton onClick={() => dispatch(setMode())}>
+                            {theme.mode  === 'black' ? (
+                                <DarkMode sx={{fontSize: '25px'}} />
+                            ) : (
+                                <LightMode sx={{ color: 'white', fontSize: '25px'}} />
+                            )}
+                        </IconButton>
+                        <Message />
+                        <Notifications />
+                        <Help />
+                        <FormControl>
+                            <Select>
+                                <MenuItem >
+                                    <Typography></Typography>
+                                </MenuItem>
+                                <MenuItem onClick={() => dispatch(setLogout())} > Log Out!</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </FlexMUI>
+                    </Box>
+                )}
+
             </FlexMUI>
         </FlexMUI>
     )
