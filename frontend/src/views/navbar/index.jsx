@@ -38,7 +38,7 @@ const NavBar = () => {
 
     return (
         <FlexMUI padding=' 1rem 6%'>
-            <FlexMUI>
+            <FlexMUI gap='1.75rem'>
                 <Typography
                     fontWeight='bold'
                     fontSize='clamp(1rem,2rem,2.5rem)'
@@ -54,8 +54,9 @@ const NavBar = () => {
                 >
                     RGeeks
                 </Typography>
-                { !mobileMenu ? (
-                    <FlexMUI>
+
+                { noMobileScreen ? (
+                    <FlexMUI gap='2rem'>
                         <IconButton onClick={() => dispatch(setMode())}>
                             {theme.mode  === 'black' ? (
                                 <DarkMode sx={{fontSize: '25px'}} />
@@ -79,9 +80,7 @@ const NavBar = () => {
                     <IconButton onClick={() => setMobileMenu(!mobileMenu)}>
                         <Menu/>
                     </IconButton>
-                )
-
-                }
+                )}
 
                 {/* {mobile sc} */}
                 {!noMobileScreen && mobileMenu && (
@@ -94,7 +93,10 @@ const NavBar = () => {
 
                         {/* {Menuitem} */}
                         <FlexMUI display='flex' flexDirection='column' alignItems='center' gap='3rem'>
-                        <IconButton onClick={() => dispatch(setMode())}>
+                        <IconButton 
+                            onClick={() => dispatch(setMode())}
+                            sx = {{ fontSize: '25px'}}
+                            >
                             {theme.mode  === 'black' ? (
                                 <DarkMode sx={{fontSize: '25px'}} />
                             ) : (
