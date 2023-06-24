@@ -9,9 +9,9 @@ import {
 } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import EditOutlinedIcon from '@mui/icons-material/EditOutlinedIcon';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Formik } from 'formik';
-import * as yup from yup;
+import * as yup from "yup";
 import { setLogin } from "../../state";
 import Dropzone from 'react-dropzone';
 import FlexMUI from "../../components/FlexMUI";
@@ -72,7 +72,7 @@ const Form = () => {
         );
 
         const saveUser = await saveUserRespond.json();
-        onSubmitProps.resetForm();
+        onSubmitProps.resetForm()
 
         if (saveUser) {
             setPageType('login');
@@ -89,7 +89,7 @@ const Form = () => {
             }
         );
         const loggedIn = await loggedInRespond.json();
-        onSubmitProps = resetForm();
+        onSubmitProps.resetForm();
         if (loggedIn) {
             dispatch(
                 setLogin({
@@ -158,10 +158,10 @@ const Form = () => {
                                                 {!values.picture ? (
                                                     <p> Add picture HERE!</p>
                                                 ) : (
-                                                    <Box>
+                                                    <FlexMUI>
                                                         <Typography>{values.picture.name}</Typography>
                                                         <EditOutlinedIcon />
-                                                    </Box>
+                                                    </FlexMUI>
                                                 )}
                                             </Box>
                                         )}
@@ -183,13 +183,13 @@ const Form = () => {
                     </Box>
 
                     <Box>
-                        <Button fullWidth type="submit" backgrounColor='black' color="red"
+                        <Button fullWidth type="submit" 
                                 sx={{ backgrounColor: palette.primary.main,
                                       color: palette.background.alt, m: '2rem 0', p: '1rem',
                                       "&:hover" : { color: palette.primary.main}
                                 }}
                         >
-                            {isLogin ? 'LOGIN' : 'Create new Account'};
+                            {isLogin ? 'LOGIN' : 'Create new Account'}
                         </Button>
                         <Typography onClick={() => {
                             setPageType(isLogin ? 'register' : 'login');
@@ -212,7 +212,7 @@ const Form = () => {
             )}
         </Formik>
     )
-}
+};
 
 
-export default Form
+export default Form;
