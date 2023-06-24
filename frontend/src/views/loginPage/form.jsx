@@ -47,11 +47,14 @@ const inicialValuesLogin = {
 };
 
 const Form = () => {
+
     const [pageType, setPageType] = useState('login');
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isLogin = pageType === 'login';
     const isRegister = pageType === 'register';
+    const { palette } = useTheme();
+    const noMobileScreen = useMediaQuery("(min-width: 1000px)");
 
     const register = async (values, onSubmitProps) => {
         const formData = new FormData();
@@ -81,7 +84,7 @@ const Form = () => {
             "http://localhost:3001/auth/login",
             {
                 method: "POST",
-                headers: {"Content-type": "application/json"},
+                headers: { "Content-type": "application/json" },
                 body: JSON.stringify(values)
             }
         );
@@ -99,72 +102,116 @@ const Form = () => {
     }
 
 
-const handleFromSubmit = async (values, onSubmitProps) => {
-    if (isLogin) await login(values, onSubmitProps);
-    if (isRegister) await register(values, onSubmitProps);
+    const handleFromSubmit = async (values, onSubmitProps) => {
+        if (isLogin) await login(values, onSubmitProps);
+        if (isRegister) await register(values, onSubmitProps);
 
-};
+    };
 
-return (
-    <Formik onSubmit={handleFromSubmit}>
-        {({
-            values,
-            errors,
-            touched,
-            handleBlur,
-            handleChange,
-            handleSubmit,
-            setFieldValue,
-            resetForm,
-            yup
-        }) => (
-            <Form onSubmit={handleSubmit}>
-                <Box display='grid'>
-                    {isRegister && (
-                        <>
-                            <TextField label='First Name' name="firstName" />
-                            <TextField label='last Name' name="lastName" />
-                            <TextField label='Location' name="location" />
-                            <TextField label='Occupation' name="occupation" />
-                            <Box borderRadius="5px" gridColumn="span 4">
-                                <Dropzone acceptedFiles='.jpg, .jpeg, .png' multiple={false} onDrop={(acceptedFiles) => setFieldValue('picture', acceptedFiles[0])} >
-                                    {({ getRootProps, getInputProps }) => (
-                                        <Box {...getRootProps()} >
-                                            <input {...getInputProps()} />
-                                            {!values.picture ? (
-                                                <p> Add picture HERE!</p>
-                                            ) : (
-                                                <Box>
-                                                    <Typography>{values.picture.name}</Typography>
-                                                    <EditOutlinedIcon />
-                                                </Box>
-                                            )}
-                                        </Box>
-                                    )}
-                                </Dropzone>
-                            </Box>
-                        </>
-                    )}
+    return (
+        <Formik onSubmit={handleFromSubmit}
+            initialValues={isLogin ? inicialValuesLogin : inicialValuesRegister}
+            validationSchema={isLogin ? loginSchema : registerSchema}>
+            {({
+                values,
+                errors,
+                touched,
+                handleBlur,
+                handleChange,
+                handleSubmit,
+                setFieldValue,
+                resetForm,
+            }) => (
+                <form onSubmit={handleSubmit}>
+                    <Box display='grid' gap="30px" gridTemplateColumns="repeat(4, minxmax(0, 1fr))"
+                        sx={{
+                            "& > div": { gridColumn: noMobileScreen ? undefined : "span 4" }
+                        }}
+                    >
+                        {isRegister && (
+                            <>
+                                <TextField label='First Name' name="firstName" onChange={handleChange} onBlur={handleBlur} value={values.firstName}
+                                    error={Boolean(touched.firstName) && Boolean(errors.firstName)}
+                                    helperText={touched.firstName && errors.firstName}
+                                    sx={{ gridColumn: "span 2" }}
+                                />
+                                <TextField label='Last Name' name="lastName" onChange={handleChange} onBlur={handleBlur} value={values.lastName}
+                                    error={Boolean(touched.lastName) && Boolean(errors.lastName)}
+                                    helperText={touched.lastName && errors.lastName}
+                                    sx={{ gridColumn: "span 2" }}
+                                />
+                                <TextField label='Location' name="location" onChange={handleChange} onBlur={handleBlur} value={values.location}
+                                    error={Boolean(touched.location) && Boolean(errors.location)}
+                                    helperText={touched.location && errors.location}
+                                    sx={{ gridColumn: "span 4" }}
+                                />
+                                <TextField label='Occupation' name="occupation" onChange={handleChange} onBlur={handleBlur} value={values.occupation}
+                                    error={Boolean(touched.occupation) && Boolean(errors.occupation)}
+                                    helperText={touched.occupation && errors.occupation}
+                                    sx={{ gridColumn: "span 4" }}
+                                />
+                                <Box border={`1px solid ${palette.background.alt}`} borderRadius="5px" gridColumn="span 4">
+                                    <Dropzone acceptedFiles='.jpg, .jpeg, .png' multiple={false} onDrop={(acceptedFiles) => setFieldValue('picture', acceptedFiles[0])} >
+                                        {({ getRootProps, getInputProps }) => (
+                                            <Box {...getRootProps()} >
+                                                <input {...getInputProps()} />
+                                                {!values.picture ? (
+                                                    <p> Add picture HERE!</p>
+                                                ) : (
+                                                    <Box>
+                                                        <Typography>{values.picture.name}</Typography>
+                                                        <EditOutlinedIcon />
+                                                    </Box>
+                                                )}
+                                            </Box>
+                                        )}
+                                    </Dropzone>
+                                </Box>
+                            </>
+                        )}
 
-                    <TextField label='Email' name="email" />
-                    <TextField label='Password' name="password" />
-                </Box>
+                        <TextField label='Email' name="email" onChange={handleChange} onBlur={handleBlur} value={values.email}
+                            error={Boolean(touched.email) && Boolean(errors.email)}
+                            helperText={touched.email && errors.email}
+                            sx={{ gridColumn: "span 4" }}
+                        />
+                        <TextField label='Password' name="password" onChange={handleChange} onBlur={handleBlur} value={values.password}
+                            error={Boolean(touched.password) && Boolean(errors.password)}
+                            helperText={touched.password && errors.password}
+                            sx={{ gridColumn: "span 4" }}
+                        />
+                    </Box>
 
-                <Box>
-                    <Button fullWidth type="submit" backgrounColor='black' color="red">
-                        {isLogin ? 'LOGIN' : 'REGISTER'};
-                    </Button>
-                    <Typography onClick={() => {
-                        setPageType(isLogin ? 'register' : 'login');
-                        resetForm();
-                    }}>
-                        {isLogin ? "Don't have an account? Sign up HERE" : "Already have an account ? Login HERE"}
-                    </Typography>
-                </Box>
-            </Form>
-        )}
-    </Formik>
-)
+                    <Box>
+                        <Button fullWidth type="submit" backgrounColor='black' color="red"
+                                sx={{ backgrounColor: palette.primary.main,
+                                      color: palette.background.alt, m: '2rem 0', p: '1rem',
+                                      "&:hover" : { color: palette.primary.main}
+                                }}
+                        >
+                            {isLogin ? 'LOGIN' : 'Create new Account'};
+                        </Button>
+                        <Typography onClick={() => {
+                            setPageType(isLogin ? 'register' : 'login');
+                            resetForm();
+                            }}
+                            sx ={{
+                                textDecoration: "underline",
+                                color: palette.primary.main,
+                                "&:hover" : {
+                                    cursor: "pointer",
+                                    color: palette.primary.light,
+                                },
+                            }}
+                        >
+                            {isLogin ? "Sign in to continue" : "Already have an account ? Login Here"}
+                        </Typography>
+                    </Box>
+   
+                </form>
+            )}
+        </Formik>
+    )
 }
 
 
