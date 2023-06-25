@@ -153,10 +153,13 @@ const Form = () => {
                                 <Box border={`1px solid ${palette.background.alt}`} borderRadius="5px" gridColumn="span 4">
                                     <Dropzone acceptedFiles='.jpg, .jpeg, .png' multiple={false} onDrop={(acceptedFiles) => setFieldValue('picture', acceptedFiles[0])} >
                                         {({ getRootProps, getInputProps }) => (
-                                            <Box {...getRootProps()} >
+                                            <Box {...getRootProps()}
+                                                p="1rem" border={`2px dashed ${palette.primary.main}`}
+                                                sx={{"&:hover": {cursor: "pointer"}}}
+                                            >
                                                 <input {...getInputProps()} />
                                                 {!values.picture ? (
-                                                    <p> Add picture HERE!</p>
+                                                    <p> Add your profile picture Here!</p>
                                                 ) : (
                                                     <FlexMUI>
                                                         <Typography>{values.picture.name}</Typography>
