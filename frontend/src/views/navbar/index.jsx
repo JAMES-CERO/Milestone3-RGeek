@@ -61,7 +61,7 @@ const NavBar = () => {
                             {theme.mode  === 'black' ? (
                                 <DarkMode sx={{fontSize: '25px'}} />
                             ) : (
-                                <LightMode sx={{ color: 'white', fontSize: '25px'}} />
+                                <LightMode sx={{  fontSize: '25px'}} />
                             )}
                         </IconButton>
                         <Message />
@@ -100,7 +100,7 @@ const NavBar = () => {
                             {theme.mode  === 'black' ? (
                                 <DarkMode sx={{fontSize: '25px'}} />
                             ) : (
-                                <LightMode sx={{ color: 'white', fontSize: '25px'}} />
+                                <LightMode sx={{  fontSize: '25px'}} />
                             )}
                         </IconButton>
                         <Message />
