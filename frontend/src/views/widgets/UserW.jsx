@@ -1,5 +1,4 @@
 import {
-    EditOutlined,
     ManageAccountsOutlined,
     LocationOnOutlined,
     WorkOutlineOutlined,
@@ -10,7 +9,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-const UserW = ({ userId, picturePath}) => {
+const UserW = ({ userId, picturePath }) => {
 
     const [user, setUser] = useState(null);
     const { palette } = useTheme();
@@ -19,11 +18,11 @@ const UserW = ({ userId, picturePath}) => {
     const dark = palette.background.default;
     const main = palette.background.alt;
 
-    const getUser = async() => {
-        const response = await fetch(`http://localhost:3001/users/${userId}`, 
+    const getUser = async () => {
+        const response = await fetch(`http://localhost:3001/users/${userId}`,
             {
                 method: 'GET',
-                headers: {Authorization: `Bearer ${token}`}
+                headers: { Authorization: `Bearer ${token}` }
             })
         const data = await response.json();
         setUser(data);
@@ -32,10 +31,57 @@ const UserW = ({ userId, picturePath}) => {
         getUser();
     }, [])
 
-    if(!user) {
+    if (!user) {
         return null;
     }
 
-}
+    const {
+        firstName,
+        lastName,
+        location,
+        occupation,
+        friends
+    } = user;
+
+    return (
+        <Box>
+            <FlexMUI pb='1.1rem' onClick={() => navigate(`/profile/${userId}`)}>
+                <FlexMUI>
+                    <img image={picturePath} />
+                    <Box>
+                        <Typography variant="h4" color='dark' fontWeight='500' 
+                                    sx={{
+                                        "&hover": {
+                                            color: palette.primary.light,
+                                            cursor:'pointer'
+                                        }
+                                    }}
+                        >
+                            {firstName} {lastName}
+                        </Typography>
+                        <Typography>
+                            {/* {friends.length} */}
+                             friends
+                        </Typography>
+                        <ManageAccountsOutlined />
+                    </Box>
+                </FlexMUI>
+            </FlexMUI>
+            <Divider />
+
+            <Box>
+                <Box>
+                    <LocationOnOutlined fontSize="large" />
+                    <Typography>{location}</Typography>
+                </Box>
+                <Box>
+                    <WorkOutlineOutlined fontSize="large" />
+                    <Typography>{occupation}</Typography>
+                </Box>
+            </Box>
+        </Box>
+    )
+
+};
 
 export default UserW;
