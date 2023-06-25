@@ -21,9 +21,9 @@ import {
     Close
 } from '@mui/icons-material'
 import { useDispatch, useSelector } from "react-redux";
-import { setMode, setLogout } from "../../state";
+import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
-import FlexMUI from "../../components/FlexMUI";
+import FlexMUI from "components/FlexMUI";;
 
 const NavBar = () => {
 
@@ -61,7 +61,7 @@ const NavBar = () => {
                             {theme.mode  === 'black' ? (
                                 <DarkMode sx={{fontSize: '25px'}} />
                             ) : (
-                                <LightMode sx={{  fontSize: '25px'}} />
+                                <LightMode sx={{ color: 'white', fontSize: '25px'}} />
                             )}
                         </IconButton>
                         <Message />
@@ -100,7 +100,7 @@ const NavBar = () => {
                             {theme.mode  === 'black' ? (
                                 <DarkMode sx={{fontSize: '25px'}} />
                             ) : (
-                                <LightMode sx={{  fontSize: '25px'}} />
+                                <LightMode sx={{ color: 'white', fontSize: '25px'}} />
                             )}
                         </IconButton>
                         <Message />

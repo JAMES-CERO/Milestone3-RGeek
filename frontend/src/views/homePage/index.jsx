@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import NavBar from "../navbar";
+import NavBar from "views/navbar";
 
 const HomePage = () => {
     return (

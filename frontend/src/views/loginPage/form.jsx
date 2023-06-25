@@ -12,9 +12,9 @@ import { useDispatch } from "react-redux";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Formik } from 'formik';
 import * as yup from "yup";
-import { setLogin } from "../../state";
+import { setLogin } from "state";
 import Dropzone from 'react-dropzone';
-import FlexMUI from "../../components/FlexMUI";
+import FlexMUI from "components/FlexMUI";
 
 const registerSchema = yup.object().shape({
     firstName: yup.string().required('required'),
