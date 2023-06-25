@@ -2,6 +2,7 @@ import { Box, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import NavBar from "views/navbar";
 import UserW from "views/widgets/UserW"
+import PostW from "views/widgets/PostW"
 
 const HomePage = () => {
 
@@ -16,6 +17,9 @@ const HomePage = () => {
                 <UserW 
                 // userId={id} picturePath={picturePath}
                 />
+            </Box>
+            <Box>
+                <PostW ></PostW>
             </Box>
 
             {noMobileScreen && <Box flexBasis="26%"></Box>}
