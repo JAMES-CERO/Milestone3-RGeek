@@ -150,7 +150,7 @@ const Form = () => {
                                     helperText={touched.occupation && errors.occupation}
                                     sx={{ gridColumn: "span 4" }}
                                 />
-                                <Box border={`1px solid ${palette.background.alt}`} borderRadius="5px" gridColumn="span 4">
+                                <Box border={`5px solid ${palette.background.alt}`} borderRadius="5px" gridColumn="span 4">
                                     <Dropzone acceptedFiles='.jpg, .jpeg, .png' multiple={false} onDrop={(acceptedFiles) => setFieldValue('picture', acceptedFiles[0])} >
                                         {({ getRootProps, getInputProps }) => (
                                             <Box {...getRootProps()}
