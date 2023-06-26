@@ -21,6 +21,7 @@ export const themeSettings = (mode) => {
                         dark: colorTokens.dark.header,
                         main: colorTokens.dark.header,
                         light: colorTokens.dark.header,
+                        icon: colorTokens.dark.icon,
                     },
                     text: {
                         primary: "#FFFFFF", 
