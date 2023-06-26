@@ -21,7 +21,7 @@ import FlexMUI from "components/FlexMUI"
 import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import Dropzone from "react-dropzone"
-// import UserImage from "components/UserImage"
+import UserImage from "components/UserImage"
 import WidgetControl from "components/WidgetControl"
 import { setPost } from "state"
 
@@ -29,15 +29,15 @@ const PostW = ({ picturePath }) => {
     const dispatch = useDispatch();
     const [imagePOST, setImagePOST] = useState(false);
     const [image, setImage] = useState(null);
-    // const [post, setPost] = useState('');
+    const [post, setPost] = useState('');
     const { palette } = useTheme()
-    // const { _id } = useSelector((state) => state.user);
+    const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token)
 
-    const habldePost = async () => {
+    const handlePost = async () => {
         const formData = new FormData();
-        // formData.append("userId", _id)
-        // formData.append("description", post)
+        formData.append("userId", _id)
+        formData.append("description", post)
     }
 
     return (
