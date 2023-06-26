@@ -47,24 +47,22 @@ const UserW = ({ userId, picturePath }) => {
 
     return (
         <WidgetControl>
-            <FlexMUI pb='1.1rem' onClick={() => navigate(`/profile/${userId}`)}>
-                <FlexMUI>
+            <FlexMUI gap="0.5rem" pb='1.1rem' onClick={() => navigate(`/profile/${userId}`)}>
+                <FlexMUI gap="1rem">
                     <UserImage image={picturePath} />
                     <Box>
-                        <Typography variant="h4" color='dark' fontWeight='500'
+                        <Typography variant="h4" color={dark} fontWeight='500'
                             sx={{
                                 "&hover": {
-                                    color: palette.primary.light,
+                                    color: main,
                                     cursor: 'pointer'
                                 }
                             }}
                         >
-                            {/* {firstName} {lastName} */}
-                            first name
+                            {firstName} {lastName}
                         </Typography>
                         <Typography>
-                            {/* {friends.length} */}
-                            friends
+                            {friends.length} friends
                         </Typography>
                     </Box>
                 </FlexMUI>

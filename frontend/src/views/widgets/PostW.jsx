@@ -33,17 +33,30 @@ const PostW = ({ picturePath }) => {
     const { palette } = useTheme()
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token)
+    const noMobileScreen = useMediaQuery("(min-width: 1000px)");
 
     const handlePost = async () => {
         const formData = new FormData();
         formData.append("userId", _id)
         formData.append("description", post)
-    }
+
+    const response = await fetch(`http://localhost:3001/posts`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+      
+      const posts = await response.json();
+      dispatch(setPost({ posts }));
+      setImage(null);
+      setPost("");
+      
+    };
 
     return (
         <WidgetControl>
-            <FlexMUI>
-                {/* <UserImage /> */}
+            <FlexMUI gap="1rem">
+                <UserImage image={picturePath} />
                 <InputBase placeholder="Hey! Share your day" />
             </FlexMUI>
             {imagePOST && (
