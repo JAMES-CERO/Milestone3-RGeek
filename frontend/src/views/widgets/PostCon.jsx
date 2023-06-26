@@ -28,6 +28,8 @@ const PostCon = ({
     const hasLike = Boolean(likes[loggedInUserId])
     const likeCount = Object.keys(likes).length;
     const { palette } = useTheme();
+    const main = palette.neutral.main;
+    const primary = palette.primary.main;
 
     const numberLikes = async () => {
         const response = fetch(`http://localhost:3001/posts/${postId}/like`, {
@@ -44,9 +46,10 @@ const PostCon = ({
 
     return (
         <WidgetControl m="2rem 0">
-            <Typography>
+            <Typography sx={{ mt: "0.5rem"}}>
                 {description}
             </Typography>
+            <Divider />
             {picturePath && (
                 <img 
                     width="100%" height="auto" alt="post" src={`http://localhost:3001/assets/${picturePath}`}
@@ -55,9 +58,9 @@ const PostCon = ({
             <FlexMUI mt= "0.25rem">
                 <FlexMUI gap="1rem">
                     <FlexMUI gap="0.3rem">
-                        <IconButton>
+                        <IconButton onClick={numberLikes}>
                             {hasLike ? (
-                                <FavoriteOutlined sx={{ color: palette.primary.icon }}/>
+                                <FavoriteOutlined sx={{ color: primary }}/>
                             ) : (
                                 <FavoriteBorderOutlined />
                             )}
@@ -65,7 +68,7 @@ const PostCon = ({
                         <Typography> {likeCount}</Typography>
                     </FlexMUI>
                     <FlexMUI gap="0.3rem">
-                    <IconButton>
+                    <IconButton onClick={() => setHasComments(!hasComments)}>
                             <ChatBubbleOutlineOutlined />
                         </IconButton>
                         <Typography> {comments.length}</Typography>
@@ -77,11 +80,11 @@ const PostCon = ({
                 </IconButton>
             </FlexMUI>
             {hasComments &&(
-                <Box>
+                <Box mt="0.5rem">
                     {comments.map((comment, i) => (
                         <Box key={`${name}-${i}`}>
                             <Divider />
-                            <Typography>
+                            <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
                                 {comment}
                             </Typography>
                         </Box>
@@ -94,4 +97,4 @@ const PostCon = ({
 
 };
 
-export default PostCon;
+export default PostCon; 

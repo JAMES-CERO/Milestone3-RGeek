@@ -53,6 +53,7 @@ const PostW = ({ picturePath }) => {
         });
 
         const posts = await response.json();
+        
         dispatch(setPosts({ posts }));
         setImage(null);
         setPost("");
@@ -130,7 +131,7 @@ const PostW = ({ picturePath }) => {
                 )}
 
                 <Button
-                    disabled={post} onClick={handlePost}
+                    onClick={handlePost}
                     sx={{
                         color: palette.background.alt,
                         backgroundColor: palette.primary.main,
