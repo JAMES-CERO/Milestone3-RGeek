@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
+import PostCon from "./PostCon";
 
 const PostsControl = ({userId, isProfile = false}) => {
 
@@ -42,7 +43,7 @@ const PostsControl = ({userId, isProfile = false}) => {
                 comments 
             
             }) => (
-                <PostControl
+                <PostCon
                 key ={_id}
                 postId={userId}
                 postUserId={firstName}

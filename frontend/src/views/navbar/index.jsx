@@ -33,14 +33,18 @@ const NavBar = () => {
     const user = useSelector((state) => state.user);
     const noMobileScreen = useMediaQuery("(min-width: 1000px)");
     const theme = useTheme();
-    const alt = theme.palette.background.alt;
-    const icon = theme.palette.primary.icon;
+
+    const neutralLight = theme.palette.neutral.light;
+    const dark = theme.palette.neutral.dark;
     const background = theme.palette.background.default;
+    const primaryLight = theme.palette.primary.light;
+    const alt = theme.palette.background.alt;
+    const skyblue = theme.palette.neutral.skyblue;
 
     const fullName = `${user.firstName} ${user.lastName}`;
 
     return (
-        <FlexMUI padding=' 1rem 6%' backgroundColor={alt}>
+        <FlexMUI padding=' 1rem 6%' backgroundColor="black">
             <FlexMUI gap='1.75rem'>
                 <Typography
                     fontWeight='bold'
@@ -51,20 +55,20 @@ const NavBar = () => {
                     sx={{
                         '&:hover': {
                             cursor: 'pointer',
-                            color: icon
+                            color: primaryLight,
                         }
                     }}
                 >
                     RGeeks
                 </Typography>
-                {noMobileScreen && (
+                {noMobileScreen || mobileMenu ? (
                     <FlexMUI gap='3rem' borderRadius="9px" padding="0.1rem 1.5rem">
                         <InputBase placeholder="Search.." />
                         <IconButton>
-                            <Search />
+                            <Search color="pink" />
                         </IconButton>
-                    </FlexMUI >
-                )}
+                    </FlexMUI>
+                ) : null}
             </FlexMUI>
 
             {noMobileScreen ? (
@@ -73,17 +77,17 @@ const NavBar = () => {
                         {theme.mode === 'dark' ? (
                             <DarkMode sx={{ fontSize: '25px' }} />
                         ) : (
-                            <LightMode sx={{ color: 'dark', fontSize: '25px' }} />
+                            <LightMode sx={{ color: "lightblue", fontSize: '25px' }} />
                         )}
                     </IconButton>
-                    <Message sx={{ fontSize: "25px" }} />
-                    <Notifications sx={{ fontSize: "25px" }} />
-                    <Help sx={{ fontSize: "25px" }} />
+                    <Message sx={{ color: 'pink', fontSize: "25px" }} />
+                    <Notifications sx={{ color: 'pink', fontSize: "25px" }} />
+                    <Help sx={{ color: 'pink', fontSize: "25px" }} />
                     <FormControl variant="standard" value={fullName}>
                         <Select
                             value={fullName}
                             sx={{
-                                backgroundColor: "black",
+                                backgroundColor: primaryLight,
                                 width: "150px",
                                 borderRadius: "0.25rem",
                                 p: "0.25rem 1rem",
@@ -92,7 +96,7 @@ const NavBar = () => {
                                     width: "3rem",
                                 },
                                 "& .MuiSelect-select:focus": {
-                                    backgroundColor: 'black',
+                                    backgroundColor: skyblue,
                                 },
                             }}
                             input={<InputBase />}
@@ -113,7 +117,7 @@ const NavBar = () => {
             {/* {mobile sc} */}
             {!noMobileScreen && mobileMenu && (
                 <Box position='fixed' backgroundColor='black' right='0' bottom='0' height="100%"
-                    zIndex="10" maxWidth="500px" minWidth="300px" 
+                    zIndex="10" maxWidth="500px" minWidth="300px"
                 >
                     <Box display='flex' justifyContent='frex-end' p="1rem">
                         <IconButton onClick={() => setMobileMenu(!mobileMenu)}>
@@ -125,7 +129,7 @@ const NavBar = () => {
                     <FlexMUI display='flex' flexDirection='column' justifyContent="center" alignItems='center' gap='3rem'>
                         <IconButton
                             onClick={() => dispatch(setMode())}
-                            sx={{ fontSize: '25px' }}
+                            sx={{ color: primaryLight, fontSize: '25px' }}
                         >
                             {theme.palette.mode === 'dark' ? (
                                 <DarkMode sx={{ fontSize: '25px' }} />
@@ -133,13 +137,13 @@ const NavBar = () => {
                                 <LightMode sx={{ color: 'dark', fontSize: '25px' }} />
                             )}
                         </IconButton>
-                        <Message sx={{ fontSize: "25px" }} />
-                        <Notifications sx={{ fontSize: "25px" }} />
-                        <Help sx={{ fontSize: "25px" }} />
+                        <Message sx={{ color: 'pink', fontSize: "25px" }} />
+                        <Notifications sx={{ color: 'pink', fontSize: "25px" }} />
+                        <Help sx={{ color: 'pink', fontSize: "25px" }} />
                         <FormControl variant="standard" value={fullName}>
                             <Select value={fullName}
                                 sx={{
-                                    backgroundColor: "black",
+                                    backgroundColor: skyblue,
                                     width: "150px",
                                     borderRadius: "0.25rem",
                                     p: "0.25rem 1rem",

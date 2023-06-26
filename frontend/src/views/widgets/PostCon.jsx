@@ -36,7 +36,7 @@ const PostCon = ({
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ userId, loggedInUserId})
+            body: JSON.stringify({ userId: loggedInUserId})
         });
         const updatedPost = await response.json();
         dispatch(setPost({ post: updatedPost}));
