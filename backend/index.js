@@ -30,10 +30,10 @@ const __dirname = path.dirname(__filename);
 app.use(cors());
 app.use(express.json());
 app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin"}))
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
 app.use(morgan("common"))
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb",extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 //FILE STORAGE 
@@ -41,15 +41,15 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public/assets');
   },
-  fileName: function (req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
 });
-const upload = multer({storage});
+const upload = multer({ storage });
 
 // Routes & files - middleware
 app.post("/auth/register", upload.single('picture'), register);
-app.post("/posts", verifyToken , upload.single('picture'), createPost)
+app.post("/posts", verifyToken, upload.single('picture'), createPost)
 
 app.use("/auth", authRoutes);
 app.use('/users', userRoutes);
@@ -59,17 +59,18 @@ app.use('/posts', postRoutes);
 
 const PORT = process.env.PORT || 6001
 
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-  //add data - once
+    //add data - once
 
-  // User.insertMany(users);
-  // Post.insertMany(posts);
+    // User.insertMany(users);
+    // Post.insertMany(posts);
 
-}).catch((err) => console.log(`${err} did not connect`));
+  }).catch((err) => console.log(`${err} did not connect`));
 
-  
