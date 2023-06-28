@@ -51,7 +51,7 @@ const UserW = ({ userId, picturePath }) => {
                 <FlexMUI gap="1rem">
                     <UserImage image={picturePath} />
                     <Box>
-                        <Typography variant="h4" color={dark} fontWeight='500'
+                        <Typography variant="h4" color="red" fontWeight='500'
                             sx={{
                                 "&hover": {
                                     color: main,

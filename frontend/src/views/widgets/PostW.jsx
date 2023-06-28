@@ -53,7 +53,7 @@ const PostW = ({ picturePath }) => {
         });
 
         const posts = await response.json();
-        
+
         dispatch(setPosts({ posts }));
         setImage(null);
         setPost("");
@@ -62,9 +62,11 @@ const PostW = ({ picturePath }) => {
 
     return (
         <WidgetControl>
-            <FlexMUI gap="1rem">
-                <UserImage image={picturePath} />
-                <InputBase placeholder="Hey! Share your day" />
+            <FlexMUI gap={1} alignItems="center">
+                <UserImage image={picturePath} size="50px" style={{ flexShrink: 0 }} /> {/* Adjust the size prop if necessary and add flexShrink style */}
+                <FlexMUI flexGrow={1} alignItems="center" justifyContent="center">
+                    <InputBase placeholder="Hey! Share your day !..." style={{ textAlign: "center" }} />
+                </FlexMUI>
             </FlexMUI>
             {imagePOST && (
                 <Box border={`1px solid black`} borderRadius="5px" mt="1rem" p="1rem">

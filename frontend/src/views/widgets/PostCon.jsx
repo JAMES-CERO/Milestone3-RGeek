@@ -9,6 +9,7 @@ import WidgetControl from "components/WidgetControl";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
+import Friend from "components/Friend";
 
 const PostCon = ({
     postId,
@@ -46,6 +47,9 @@ const PostCon = ({
 
     return (
         <WidgetControl m="2rem 0">
+            <Friend 
+                friendId={postUserId} name={name} subtitle={location} userPicturePath={userPicturePath}
+            />
             <Typography sx={{ mt: "0.5rem"}}>
                 {description}
             </Typography>

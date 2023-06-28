@@ -1,9 +1,10 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, Divider, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import NavBar from "views/navbar";
 import UserW from "views/widgets/UserW"
 import PostW from "views/widgets/PostW"
 import PostsControl from "views/widgets/PostsControl";
+import FriendListW from "views/widgets/FriendListW";
 
 const HomePage = () => {
 
@@ -25,7 +26,12 @@ const HomePage = () => {
                 <PostsControl userId={_id} />
             </Box>
 
-            {noMobileScreen && <Box flexBasis="26%"></Box>}
+            {noMobileScreen && (
+                <Box flexBasis="26%">
+                    <Divider />
+                    <FriendListW userId={_id} />
+                </Box>
+            )}
         </Box>
      </Box>
     )
