@@ -36,8 +36,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     dispatch(setFriends({ friends: data }));
   };
 
-  
-
   return (
     <FlexMUI>
       <FlexMUI gap="1rem">
@@ -47,6 +45,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
             navigate(`/profile/${friendId}`);
             navigate(0);
           }}
+          sx={{ cursor: "pointer" }}
         >
           <Typography
             color={main}
@@ -55,7 +54,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
             sx={{
               "&:hover": {
                 color: palette.primary.light,
-                cursor: "pointer",
               },
             }}
           >
