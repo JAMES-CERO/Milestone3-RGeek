@@ -16,7 +16,17 @@ User
 |   `friends`   | `Array<Objet>` | 
 |   `picturePath`   | `string` | 
 |   `location`   | `string` | 
+
+Friend(sub)
+
+| Parameter | Type     | 
+| :-------- | :------- | 
+|   `_id`   | `string` | 
+|   `firstname`   | `string` | 
+|   `lastname`   | `string` | 
+|   `picturePath`   | `string` | 
 |   `occupation`   | `string` | 
+|   `location`   | `string` | 
 
 Post
 
@@ -33,15 +43,13 @@ Post
 |   `likes`   | `Objet<String>` | 
 |   `comments`   | `Array<string>` | 
 
+Images
+
+| Parameter | 
+| :-------- |
+|   `path`  | 
 
 
-## Screenshots
-
-![App Screenshot](./Prototype/1.png)
-
-....
-
-![App Screenshot](./Prototype/2.png)
 
 ## Features
 
