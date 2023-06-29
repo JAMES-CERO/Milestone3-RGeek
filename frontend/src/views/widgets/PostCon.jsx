@@ -33,7 +33,7 @@ const PostCon = ({
     const primary = palette.primary.main;
 
     const numberLikes = async () => {
-        const response = fetch(`http://localhost:3001/posts/${postId}/like`, {
+        const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${token}`,
